@@ -22,14 +22,14 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/auth")
 public class MallAdminController {
 
     @Autowired
     MallAdminService mallAdminService;
     Map<String, MallAdmin> admin;
 
-    @RequestMapping("/auth/login")
+    @RequestMapping("/login")
     public Map<String, Object> login(@RequestBody MallAdminVo mallAdminVo) {
         boolean flag = mallAdminService.login(mallAdminVo);
         Map<String, Object> map = new HashMap<>();
@@ -41,7 +41,7 @@ public class MallAdminController {
         return map;
     }
 
-    @RequestMapping("/auth/info")
+    @RequestMapping("/info")
     public Map<String, Object> info(String token) {
         Map<String, Object> data = new HashMap<>();
         data.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
