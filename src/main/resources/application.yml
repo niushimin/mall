@@ -1,12 +1,12 @@
 server:
   servlet:
-    context-path: /mall
+    context-path: /
   port: 80
 
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.5.20:3306/erp?serverTimezone=GMT&useSSL=false
+    url: jdbc:mysql://192.168.5.20:3306/mall?serverTimezone=GMT&useSSL=false
     username: root
     password: root
