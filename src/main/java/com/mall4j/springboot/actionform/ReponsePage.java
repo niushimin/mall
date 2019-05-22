@@ -2,7 +2,7 @@ package com.mall4j.springboot.actionform;
 
 import java.util.ArrayList;
 
-public class PageMessage<T> {
+public class ReponsePage<T> {
     ArrayList<T> items;
     Integer total;
 
