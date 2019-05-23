@@ -213,7 +213,7 @@
 
 
 
-  <!--分次查询，与连接查询相比，效率偏低
+  <!--分次查询，与连接查询相比，效率较低
   <select id="queryMallRegionList" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
@@ -254,6 +254,7 @@
   </select>-->
 
 
+  <!--连接查询，与分次查询相比，效率较高-->
   <resultMap id="RegionProvinceMap" type="com.mall4j.springboot.pojo.mallregion.MallRegionProvince">
     <id column="prov_id" property="id" />
     <result column="prov_name" property="name" />

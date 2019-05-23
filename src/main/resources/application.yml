@@ -10,10 +10,3 @@ spring:
     url: jdbc:mysql://192.168.5.20:3306/mall?serverTimezone=GMT&useSSL=false
     username: root
     password: root
-    pagehelper:
-      dialect: com.github.pagehelper.dialect.helper.MySqlDialect
-      offsetAsPageNum: true
-      rowBoundsWithCount: true
-      returnPageInfo: true
-      reasonable: true
-      supportMethodsArguments: true
