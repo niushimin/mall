@@ -26,10 +26,7 @@ public class MallRegionController {
 
     @RequestMapping("/list")
     public ResponseVo list() {
-        long time1 = System.currentTimeMillis();
         List<MallRegionProvince> data =  mallRegionService.queryMallRegionProvinceList();
-        long time2 = System.currentTimeMillis();
-        System.out.println(time2 - time1);
         ResponseVo responseVo = null;
         if (data != null) {
             responseVo = new ResponseVo(data, "成功", 0);
