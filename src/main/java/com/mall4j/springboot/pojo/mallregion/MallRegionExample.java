@@ -1,4 +1,4 @@
-package com.mall4j.springboot.pojo;
+package com.mall4j.springboot.pojo.mallregion;
 
 import java.util.ArrayList;
 import java.util.List;

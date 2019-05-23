@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mall4j.springboot.mapper.MallRegionMapper">
-  <resultMap id="BaseResultMap" type="com.mall4j.springboot.pojo.MallRegion">
+<mapper namespace="com.mall4j.springboot.mapper.mallregion.MallRegionMapper">
+  <resultMap id="BaseResultMap" type="com.mall4j.springboot.pojo.mallregion.MallRegion">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     id, pid, name, type, code
   </sql>
-  <select id="selectByExample" parameterType="com.mall4j.springboot.pojo.MallRegionExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.mall4j.springboot.pojo.mallregion.MallRegionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,19 +93,19 @@
     delete from mall_region
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mall4j.springboot.pojo.MallRegionExample">
+  <delete id="deleteByExample" parameterType="com.mall4j.springboot.pojo.mallregion.MallRegionExample">
     delete from mall_region
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mall4j.springboot.pojo.MallRegion">
+  <insert id="insert" parameterType="com.mall4j.springboot.pojo.mallregion.MallRegion">
     insert into mall_region (id, pid, name, 
       type, code)
     values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{type,jdbcType=TINYINT}, #{code,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.mall4j.springboot.pojo.MallRegion">
+  <insert id="insertSelective" parameterType="com.mall4j.springboot.pojo.mallregion.MallRegion">
     insert into mall_region
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mall4j.springboot.pojo.MallRegionExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.mall4j.springboot.pojo.mallregion.MallRegionExample" resultType="java.lang.Long">
     select count(*) from mall_region
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mall4j.springboot.pojo.MallRegion">
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall4j.springboot.pojo.mallregion.MallRegion">
     update mall_region
     <set>
       <if test="pid != null">
@@ -200,7 +200,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mall4j.springboot.pojo.MallRegion">
+  <update id="updateByPrimaryKey" parameterType="com.mall4j.springboot.pojo.mallregion.MallRegion">
     update mall_region
     set pid = #{pid,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -208,4 +208,78 @@
       code = #{code,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+
+
+
+  <!--分次查询，与连接查询相比，效率偏低
+  <select id="queryMallRegionList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM mall_region
+    WHERE pid = #{id}
+  </select>
+
+  <resultMap id="RegionCityMap" type="com.mall4j.springboot.pojo.mallregion.MallRegionCity">
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="type" property="type" />
+    <result column="code" property="code" />
+    <collection property="children" column="id"
+                select="com.mall4j.springboot.mapper.mallregion.MallRegionMapper.queryMallRegionList" />
+  </resultMap>
+
+  <select id="queryMallRegionCityList" resultMap="RegionCityMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM mall_region
+    WHERE pid = #{id}
+  </select>
+
+  <resultMap id="RegionProvinceMap" type="com.mall4j.springboot.pojo.mallregion.MallRegionProvince">
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="type" property="type" />
+    <result column="code" property="code" />
+    <collection property="children" column="id"
+                select="com.mall4j.springboot.mapper.mallregion.MallRegionMapper.queryMallRegionCityList" />
+  </resultMap>
+
+  <select id="queryMallRegionProvinceList" resultMap="RegionProvinceMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM mall_region
+    WHERE pid = 0
+  </select>-->
+
+
+  <resultMap id="RegionProvinceMap" type="com.mall4j.springboot.pojo.mallregion.MallRegionProvince">
+    <id column="prov_id" property="id" />
+    <result column="prov_name" property="name" />
+    <result column="prov_type" property="type" />
+    <result column="prov_code" property="code" />
+    <collection property="children" ofType="com.mall4j.springboot.pojo.mallregion.MallRegionCity">
+      <id column="city_id" property="id" />
+      <result column="city_name" property="name" />
+      <result column="city_type" property="type" />
+      <result column="city_code" property="code" />
+      <collection property="children" ofType="com.mall4j.springboot.pojo.mallregion.MallRegion">
+        <id column="area_id" property="id" />
+        <result column="area_pid" property="pid" />
+        <result column="area_name" property="name" />
+        <result column="area_type" property="type" />
+        <result column="area_code" property="code" />
+      </collection>
+    </collection>
+  </resultMap>
+
+  <select id="queryMallRegionProvinceList" resultMap="RegionProvinceMap">
+    SELECT prov.id prov_id, prov.name prov_name, prov.type prov_type, prov.code prov_code,
+           city.id city_id, city.name city_name, city.type city_type, city.code city_code,
+           area.id area_id, area.pid area_pid, area.name area_name, area.type area_type, area.code area_code
+    FROM mall_region prov LEFT JOIN mall_region city ON prov.id = city.pid
+                          LEFT JOIN mall_region area ON city.id = area.pid
+    WHERE prov.pid = 0
+  </select>
 </mapper>

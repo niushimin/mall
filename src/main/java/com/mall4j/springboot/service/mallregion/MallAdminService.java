@@ -1,4 +1,4 @@
-package com.mall4j.springboot.service;
+package com.mall4j.springboot.service.mallregion;
 
 import com.mall4j.springboot.pojo.MallAdminVo;
 

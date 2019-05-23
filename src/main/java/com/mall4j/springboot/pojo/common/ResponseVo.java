@@ -7,24 +7,24 @@ package com.mall4j.springboot.pojo.common;
  */
 
 public class ResponseVo {
-    private String data;
+    private Object data;
     private String errmsg;
     private int errno;
 
     public ResponseVo() {
     }
 
-    public ResponseVo(String data, String errmsg, int errno) {
+    public ResponseVo(Object data, String errmsg, int errno) {
         this.data = data;
         this.errmsg = errmsg;
         this.errno = errno;
     }
 
-    public String getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Object data) {
         this.data = data;
     }
 

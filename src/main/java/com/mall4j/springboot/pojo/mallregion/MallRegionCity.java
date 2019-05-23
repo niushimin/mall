@@ -1,9 +1,9 @@
-package com.mall4j.springboot.pojo;
+package com.mall4j.springboot.pojo.mallregion;
 
-public class MallRegion {
+import java.util.List;
+
+public class MallRegionCity {
     private Integer id;
-
-    private Integer pid;
 
     private String name;
 
@@ -11,20 +11,14 @@ public class MallRegion {
 
     private Integer code;
 
+    private List<MallRegion> children;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getPid() {
-        return pid;
-    }
-
-    public void setPid(Integer pid) {
-        this.pid = pid;
     }
 
     public String getName() {
@@ -49,5 +43,13 @@ public class MallRegion {
 
     public void setCode(Integer code) {
         this.code = code;
+    }
+
+    public List<MallRegion> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<MallRegion> children) {
+        this.children = children;
     }
 }

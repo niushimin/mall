@@ -1,7 +1,8 @@
-package com.mall4j.springboot.mapper;
+package com.mall4j.springboot.mapper.mallregion;
 
-import com.mall4j.springboot.pojo.MallRegion;
-import com.mall4j.springboot.pojo.MallRegionExample;
+import com.mall4j.springboot.pojo.mallregion.MallRegion;
+import com.mall4j.springboot.pojo.mallregion.MallRegionExample;
+import com.mall4j.springboot.pojo.mallregion.MallRegionProvince;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,8 @@ public interface MallRegionMapper {
     int updateByPrimaryKeySelective(MallRegion record);
 
     int updateByPrimaryKey(MallRegion record);
+
+
+    // 自己写的接口
+    List<MallRegionProvince> queryMallRegionProvinceList();
 }
