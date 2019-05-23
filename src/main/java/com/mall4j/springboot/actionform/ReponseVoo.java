@@ -2,8 +2,15 @@ package com.mall4j.springboot.actionform;
 
 public class ReponseVoo<T> {
     T data;
-    String errmsg;
-    Integer errno;
+    String errmsg = "成功";
+    Integer errno = 0;
+
+    public ReponseVoo() {
+    }
+
+    public ReponseVoo(T data) {
+        this.data = data;
+    }
 
     public T getData() {
         return data;
