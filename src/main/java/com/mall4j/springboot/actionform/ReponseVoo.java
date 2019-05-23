@@ -1,6 +1,6 @@
 package com.mall4j.springboot.actionform;
 
-public class ReponseVo<T> {
+public class ReponseVoo<T> {
     T data;
     String errmsg;
     Integer errno;
