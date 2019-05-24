@@ -2,6 +2,7 @@ package com.mall4j.springboot.controller.product;
 
 import com.mall4j.springboot.actionform.ReponseVoo;
 import com.mall4j.springboot.actionform.RequestListParams;
+import com.mall4j.springboot.actionform.product.RequestGoods;
 import com.mall4j.springboot.pojo.MallGoods;
 import com.mall4j.springboot.service.product.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,9 @@ public class GoodsController {
     }
     /*新增商品*/
     @RequestMapping("/create")
-    public ReponseVoo insertProduct(){
-        return null;
+    public ReponseVoo insertProduct(@RequestBody RequestGoods requestGoods){
+        ReponseVoo reponseVoo = goodsService.insertGoods(requestGoods);
+        return reponseVoo;
     }
 
 }

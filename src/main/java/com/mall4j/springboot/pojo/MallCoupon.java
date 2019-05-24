@@ -1,6 +1,7 @@
 package com.mall4j.springboot.pojo;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class MallCoupon {
@@ -26,7 +27,7 @@ public class MallCoupon {
 
     private Short goodsType;
 
-    private String goodsValue;
+    private String[] goodsValue;
 
     private String code;
 
@@ -132,12 +133,20 @@ public class MallCoupon {
         this.goodsType = goodsType;
     }
 
-    public String getGoodsValue() {
+/*    public String getGoodsValue() {
         return goodsValue;
     }
 
     public void setGoodsValue(String goodsValue) {
         this.goodsValue = goodsValue == null ? null : goodsValue.trim();
+    }*/
+
+    public String[] getGoodsValue() {
+        return goodsValue;
+    }
+
+    public void setGoodsValue(String[] goodsValue) {
+        this.goodsValue = goodsValue;
     }
 
     public String getCode() {
