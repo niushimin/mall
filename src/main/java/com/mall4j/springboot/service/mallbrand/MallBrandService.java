@@ -1,6 +1,8 @@
 package com.mall4j.springboot.service.mallbrand;
 
 import com.mall4j.springboot.pojo.mallbrand.BrandPageVo;
+import com.mall4j.springboot.pojo.mallbrand.MallBrand;
+import com.mall4j.springboot.pojo.mallbrand.MallBrandVo;
 
 import java.util.Map;
 
@@ -12,4 +14,10 @@ import java.util.Map;
 public interface MallBrandService {
 
     Map<String, Object> queryMallBrandPageList(BrandPageVo requestPageVo);
+
+    MallBrandVo createNewMallBrand(MallBrand mallBrand);
+
+    MallBrand updateMallBrand(MallBrand mallBrand);
+
+    void deleteMallBrand(MallBrand mallBrand);
 }

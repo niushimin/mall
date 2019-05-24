@@ -1,4 +1,4 @@
-package com.mall4j.springboot.pojo;
+package com.mall4j.springboot.pojo.mallorder;
 
 import java.math.BigDecimal;
 import java.util.Date;
