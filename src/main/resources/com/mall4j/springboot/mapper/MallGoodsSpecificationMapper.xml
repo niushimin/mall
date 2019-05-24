@@ -87,7 +87,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from mall_goods_specification
     where id = #{id,jdbcType=INTEGER}
@@ -103,11 +103,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mall4j.springboot.pojo.MallGoodsSpecification">
-    insert into mall_goods_specification (id, goods_id, specification, 
-      value, pic_url, add_time, 
+    insert into mall_goods_specification (id, goods_id, specification,
+      value, pic_url, add_time,
       update_time, deleted)
-    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{specification,jdbcType=VARCHAR}, 
-      #{value,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{specification,jdbcType=VARCHAR},
+      #{value,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.mall4j.springboot.pojo.MallGoodsSpecification">
@@ -206,13 +206,13 @@
   <update id="updateByExample" parameterType="map">
     update mall_goods_specification
     set id = #{record.id,jdbcType=INTEGER},
-      goods_id = #{record.goodsId,jdbcType=INTEGER},
-      specification = #{record.specification,jdbcType=VARCHAR},
-      value = #{record.value,jdbcType=VARCHAR},
-      pic_url = #{record.picUrl,jdbcType=VARCHAR},
-      add_time = #{record.addTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      deleted = #{record.deleted,jdbcType=BIT}
+    goods_id = #{record.goodsId,jdbcType=INTEGER},
+    specification = #{record.specification,jdbcType=VARCHAR},
+    value = #{record.value,jdbcType=VARCHAR},
+    pic_url = #{record.picUrl,jdbcType=VARCHAR},
+    add_time = #{record.addTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    deleted = #{record.deleted,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -13,7 +13,7 @@
     <result column="type" jdbcType="SMALLINT" property="type" />
     <result column="status" jdbcType="SMALLINT" property="status" />
     <result column="goods_type" jdbcType="SMALLINT" property="goodsType" />
-    <result column="goods_value" jdbcType="VARCHAR" property="goodsValue" />
+    <result column="goods_value" typeHandler="com.mall4j.springboot.handler.StringArrayToStringHandler" property="goodsValue" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="time_type" jdbcType="SMALLINT" property="timeType" />
     <result column="days" jdbcType="SMALLINT" property="days" />
@@ -126,7 +126,7 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
       #{tag,jdbcType=VARCHAR}, #{total,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, 
       #{min,jdbcType=DECIMAL}, #{limit,jdbcType=SMALLINT}, #{type,jdbcType=SMALLINT}, 
-      #{status,jdbcType=SMALLINT}, #{goodsType,jdbcType=SMALLINT}, #{goodsValue,jdbcType=VARCHAR}, 
+      #{status,jdbcType=SMALLINT}, #{goodsType,jdbcType=SMALLINT}, #{goodsValue,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler,jdbcType=VARCHAR},
       #{code,jdbcType=VARCHAR}, #{timeType,jdbcType=SMALLINT}, #{days,jdbcType=SMALLINT}, 
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{addTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
@@ -230,7 +230,7 @@
         #{goodsType,jdbcType=SMALLINT},
       </if>
       <if test="goodsValue != null">
-        #{goodsValue,jdbcType=VARCHAR},
+        #{goodsValue,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
@@ -301,7 +301,7 @@
         goods_type = #{record.goodsType,jdbcType=SMALLINT},
       </if>
       <if test="record.goodsValue != null">
-        goods_value = #{record.goodsValue,jdbcType=VARCHAR},
+        goods_value = #{record.goodsValue,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler,jdbcType=VARCHAR},
       </if>
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
@@ -345,7 +345,7 @@
       type = #{record.type,jdbcType=SMALLINT},
       status = #{record.status,jdbcType=SMALLINT},
       goods_type = #{record.goodsType,jdbcType=SMALLINT},
-      goods_value = #{record.goodsValue,jdbcType=VARCHAR},
+      goods_value = #{record.goodsValue,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
       time_type = #{record.timeType,jdbcType=SMALLINT},
       days = #{record.days,jdbcType=SMALLINT},
@@ -392,7 +392,7 @@
         goods_type = #{goodsType,jdbcType=SMALLINT},
       </if>
       <if test="goodsValue != null">
-        goods_value = #{goodsValue,jdbcType=VARCHAR},
+        goods_value = #{goodsValue,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
@@ -433,7 +433,7 @@
       type = #{type,jdbcType=SMALLINT},
       status = #{status,jdbcType=SMALLINT},
       goods_type = #{goodsType,jdbcType=SMALLINT},
-      goods_value = #{goodsValue,jdbcType=VARCHAR},
+      goods_value = #{goodsValue,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       time_type = #{timeType,jdbcType=SMALLINT},
       days = #{days,jdbcType=SMALLINT},

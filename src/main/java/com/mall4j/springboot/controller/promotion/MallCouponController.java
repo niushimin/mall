@@ -28,6 +28,13 @@ public class MallCouponController {
         return reponseVoo;
     }
 
+    //回显数据
+    @RequestMapping("/listuser")
+    public ReponseVoo getList(RequestListParams requestListParams, Integer userId, Short status) {
+        ReponseVoo reponseVoo = mallCouponUserService.getList(requestListParams, userId, status);
+        return reponseVoo;
+    }
+
     //编辑
     @RequestMapping("/update")
     public ReponseVoo update(@RequestBody MallCoupon mallCoupon) {
@@ -51,8 +58,8 @@ public class MallCouponController {
 
     //详情
     @RequestMapping("/read")
-    public ReponseVoo read(@RequestBody MallCoupon mallCoupon) {
-        ReponseVoo reponseVoo = mallCouponService.read(mallCoupon);
+    public ReponseVoo read(Integer id) {
+        ReponseVoo reponseVoo = mallCouponService.read(id);
         return reponseVoo;
     }
 

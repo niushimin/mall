@@ -13,5 +13,5 @@ public interface MallCouponService {
 
     ReponseVoo delete(MallCoupon mallCoupon);
 
-    ReponseVoo read(MallCoupon mallCoupon);
+    ReponseVoo read(Integer id);
 }

@@ -67,8 +67,8 @@ public class MallCouponServiceImpl implements MallCouponService {
     }
 
     @Override
-    public ReponseVoo read(MallCoupon mallCoupon) {
-        MallCoupon mallCoupon1 = mallCouponMapper.selectByPrimaryKey(mallCoupon.getId());
+    public ReponseVoo read(Integer id) {
+        MallCoupon mallCoupon1 = mallCouponMapper.selectByPrimaryKey(id);
         ReponseVoo<MallCoupon> reponseVoo = new ReponseVoo<>(mallCoupon1);
         return reponseVoo;
 
