@@ -1,8 +1,8 @@
-package com.mall4j.springboot.pojo;
+package com.mall4j.springboot.pojo.mallissue;
 
 import java.util.Date;
 
-public class MallIssue {
+public class MallIssueVo {
     private Integer id;
 
     private String question;
@@ -12,8 +12,6 @@ public class MallIssue {
     private Date addTime;
 
     private Date updateTime;
-
-    private Boolean deleted;
 
     public Integer getId() {
         return id;
@@ -55,11 +53,4 @@ public class MallIssue {
         this.updateTime = updateTime;
     }
 
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
 }

@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.mall4j.springboot.mapper.mallkeyword.MallKeywordMapper;
 import com.mall4j.springboot.pojo.mallkeyword.KeywordPageVo;
 import com.mall4j.springboot.pojo.mallkeyword.MallKeyword;
+import com.mall4j.springboot.pojo.mallkeyword.MallKeywordExample;
 import com.mall4j.springboot.pojo.mallkeyword.MallKeywordVo;
 import com.mall4j.springboot.service.mallkeyword.MallKeywordService;
 import org.springframework.beans.factory.annotation.Autowired;

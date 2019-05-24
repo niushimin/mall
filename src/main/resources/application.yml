@@ -2,6 +2,8 @@ server:
   servlet:
     context-path: /admin
   port: 80
+  tomcat:
+    basedir: D:\IDEAWorkSpace\springboot-tomcat-temp
 
 spring:
   datasource:

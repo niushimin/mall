@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mall4j.springboot.mapper.MallIssueMapper">
-  <resultMap id="BaseResultMap" type="com.mall4j.springboot.pojo.MallIssue">
+<mapper namespace="com.mall4j.springboot.mapper.mallissue.MallIssueMapper">
+  <resultMap id="BaseResultMap" type="com.mall4j.springboot.pojo.mallissue.MallIssue">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="question" jdbcType="VARCHAR" property="question" />
     <result column="answer" jdbcType="VARCHAR" property="answer" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     id, question, answer, add_time, update_time, deleted
   </sql>
-  <select id="selectByExample" parameterType="com.mall4j.springboot.pojo.MallIssueExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.mall4j.springboot.pojo.mallissue.MallIssueExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -94,13 +94,13 @@
     delete from mall_issue
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mall4j.springboot.pojo.MallIssueExample">
+  <delete id="deleteByExample" parameterType="com.mall4j.springboot.pojo.mallissue.MallIssueExample">
     delete from mall_issue
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mall4j.springboot.pojo.MallIssue">
+  <insert id="insert" parameterType="com.mall4j.springboot.pojo.mallissue.MallIssue">
     insert into mall_issue (id, question, answer, 
       add_time, update_time, deleted
       )
@@ -108,7 +108,7 @@
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mall4j.springboot.pojo.MallIssue">
+  <insert id="insertSelective" parameterType="com.mall4j.springboot.pojo.mallissue.MallIssue">
     insert into mall_issue
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mall4j.springboot.pojo.MallIssueExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.mall4j.springboot.pojo.mallissue.MallIssueExample" resultType="java.lang.Long">
     select count(*) from mall_issue
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -195,7 +195,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mall4j.springboot.pojo.MallIssue">
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall4j.springboot.pojo.mallissue.MallIssue">
     update mall_issue
     <set>
       <if test="question != null">
@@ -216,7 +216,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mall4j.springboot.pojo.MallIssue">
+  <update id="updateByPrimaryKey" parameterType="com.mall4j.springboot.pojo.mallissue.MallIssue">
     update mall_issue
     set question = #{question,jdbcType=VARCHAR},
       answer = #{answer,jdbcType=VARCHAR},
@@ -225,4 +225,40 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+
+  <select id="queryMallIssuePageList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM mall_issue
+    <where>
+      <if test="question != null">
+        AND question LIKE concat("%", #{question}, "%")
+      </if>
+    </where>
+    ORDER BY ${sort} ${order}
+  </select>
+
+  <insert id="createNewMallIssue">
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO mall_issue (question, answer, add_time, update_time, deleted)
+    VALUES (#{question}, #{answer}, #{addTime}, #{updateTime}, #{deleted})
+  </insert>
+
+  <resultMap id="IssueVoMap" type="com.mall4j.springboot.pojo.mallissue.MallIssueVo">
+    <id column="id" property="id" />
+    <result column="question" property="question" />
+    <result column="answer" property="answer" />
+    <result column="add_time" property="addTime" />
+    <result column="update_time" property="updateTime" />
+  </resultMap>
+
+  <select id="selectMallIssueVoById" resultMap="IssueVoMap">
+    SELECT id, question, answer, add_time, update_time
+    FROM mall_issue
+    WHERE id = #{id}
+  </select>
 </mapper>

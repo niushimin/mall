@@ -296,7 +296,6 @@
     </selectKey>
     INSERT INTO mall_keyword(keyword, url, is_hot, is_default, sort_order, add_time, update_time, deleted)
     VALUES(#{keyword,}, #{url}, #{isHot}, #{isDefault}, #{sortOrder}, #{addTime}, #{updateTime}, #{deleted})
-
   </insert>
 
   <resultMap id="KeywordVoMap" type="com.mall4j.springboot.pojo.mallkeyword.MallKeywordVo">

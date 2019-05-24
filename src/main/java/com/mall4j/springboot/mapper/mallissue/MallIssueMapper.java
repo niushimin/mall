@@ -1,7 +1,9 @@
-package com.mall4j.springboot.mapper;
+package com.mall4j.springboot.mapper.mallissue;
 
-import com.mall4j.springboot.pojo.MallIssue;
-import com.mall4j.springboot.pojo.MallIssueExample;
+import com.mall4j.springboot.pojo.mallissue.IssuePageVo;
+import com.mall4j.springboot.pojo.mallissue.MallIssue;
+import com.mall4j.springboot.pojo.mallissue.MallIssueExample;
+import com.mall4j.springboot.pojo.mallissue.MallIssueVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +30,12 @@ public interface MallIssueMapper {
     int updateByPrimaryKeySelective(MallIssue record);
 
     int updateByPrimaryKey(MallIssue record);
+
+
+    // 自己写的接口
+    List<MallIssue> queryMallIssuePageList(IssuePageVo issuePageVo);
+
+    Integer createNewMallIssue(MallIssue mallIssue);
+
+    MallIssueVo selectMallIssueVoById(Integer id);
 }
