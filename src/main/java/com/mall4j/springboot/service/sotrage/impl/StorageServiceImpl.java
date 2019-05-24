@@ -24,7 +24,7 @@ public class StorageServiceImpl implements StorageService {
 
     @Override
     public ReponseVoo insertStorage(MultipartFile multipartFile) {
-        String myHost = "localhost/admin/wx/storage/fetch/";
+        String myHost = "http://localhost/admin/wx/storage/fetch/";
         /*参数获取*/
         long size = multipartFile.getSize();
         String filename = multipartFile.getOriginalFilename();
