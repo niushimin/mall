@@ -1,5 +1,6 @@
 package com.mall4j.springboot.controller.storage;
 
+
 import com.mall4j.springboot.actionform.ReponseVoo;
 import com.mall4j.springboot.service.sotrage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.mall4j.springboot.pojo.common.ResponseVo;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+
+/**
+ * @Author: Ethan New
+ * @Date: 2019/5/23 17:08
+ * @Description:
+ */
+
 @RestController
 @RequestMapping("/storage")
 public class StorageController {
@@ -18,8 +33,22 @@ public class StorageController {
     StorageService storageService;
 
     @RequestMapping(value = "/create")
-    public ReponseVoo insertStorage(@RequestParam("file") MultipartFile multipartFile){
+    public ReponseVoo insertStorage(@RequestParam("file") MultipartFile multipartFile) {
         ReponseVoo reponseVoo = storageService.insertStorage(multipartFile);
         return reponseVoo;
     }
+
+   /* @RequestMapping("/create")
+    public ResponseVo create(MultipartFile file) {
+        String originalFilename = file.getOriginalFilename();
+        long timeMillis = System.currentTimeMillis();
+       *//* String newFilename = timeMillis + originalFilename.substring(originalFilename.lastIndexOf("."));
+        String realPath = request.getSession().getServletContext().getRealPath("/image");
+        File realFile = new File(realPath);
+        System.out.println(realFile.getAbsolutePath());
+
+        System.out.println(newFilename);*//*
+        *//*file.transferTo();*//*
+        return null;
+    }*/
 }

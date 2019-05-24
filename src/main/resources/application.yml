@@ -2,6 +2,8 @@ server:
   servlet:
     context-path: /admin
   port: 80
+  tomcat:
+    basedir: D:\IDEAWorkSpace\springboot-tomcat-temp
 
 spring:
   datasource:
@@ -10,4 +12,3 @@ spring:
     url: jdbc:mysql://192.168.5.20:3306/mall?serverTimezone=GMT&useSSL=false
     username: root
     password: root
-

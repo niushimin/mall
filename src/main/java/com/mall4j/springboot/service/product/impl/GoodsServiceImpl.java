@@ -9,11 +9,11 @@ import com.mall4j.springboot.actionform.RequestListParams;
 import com.mall4j.springboot.actionform.product.ReponseBandAndCategory;
 import com.mall4j.springboot.actionform.product.ReponseBrand;
 import com.mall4j.springboot.actionform.product.ReponseCategory;
-import com.mall4j.springboot.mapper.MallBrandMapper;
-import com.mall4j.springboot.mapper.MallCategoryMapper;
+
 import com.mall4j.springboot.mapper.MallGoodsMapper;
-import com.mall4j.springboot.pojo.MallBrandExample;
-import com.mall4j.springboot.pojo.MallCategory;
+import com.mall4j.springboot.mapper.mallbrand.MallBrandMapper;
+import com.mall4j.springboot.mapper.mallcategory.MallCategoryMapper;
+
 import com.mall4j.springboot.pojo.MallGoods;
 import com.mall4j.springboot.pojo.MallGoodsExample;
 import com.mall4j.springboot.service.product.GoodsService;
