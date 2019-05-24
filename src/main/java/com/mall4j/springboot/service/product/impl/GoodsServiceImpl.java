@@ -6,13 +6,21 @@ import com.github.pagehelper.PageInfo;
 import com.mall4j.springboot.actionform.ReponsePage;
 import com.mall4j.springboot.actionform.ReponseVoo;
 import com.mall4j.springboot.actionform.RequestListParams;
+import com.mall4j.springboot.actionform.product.ReponseBandAndCategory;
+import com.mall4j.springboot.actionform.product.ReponseBrand;
+import com.mall4j.springboot.actionform.product.ReponseCategory;
+import com.mall4j.springboot.mapper.MallBrandMapper;
+import com.mall4j.springboot.mapper.MallCategoryMapper;
 import com.mall4j.springboot.mapper.MallGoodsMapper;
+import com.mall4j.springboot.pojo.MallBrandExample;
+import com.mall4j.springboot.pojo.MallCategory;
 import com.mall4j.springboot.pojo.MallGoods;
 import com.mall4j.springboot.pojo.MallGoodsExample;
 import com.mall4j.springboot.service.product.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.jws.Oneway;
 import java.util.List;
 
 @Service
@@ -20,6 +28,10 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     MallGoodsMapper mallGoodsMapper;
+    @Autowired
+    MallBrandMapper mallBrandMapper;
+    @Autowired
+    MallCategoryMapper mallCategoryMappper;
 
     @Override
     public ReponseVoo getProductList(RequestListParams requestListParams,String goodsSn,String name) {
@@ -53,5 +65,18 @@ public class GoodsServiceImpl implements GoodsService {
             ReponseVoo<ReponsePage> reponseVoo = new ReponseVoo<>();
             return reponseVoo;
         }
+    }
+
+    @Override
+    public ReponseVoo getReponseBandAndCategory() {
+        /*查询品牌*/
+        List<ReponseBrand> reponseBrands = mallBrandMapper.selectBand();
+        /*查询分类*/
+        List<ReponseCategory> reponseCategories = mallCategoryMappper.selectCategory();
+
+        ReponseBandAndCategory reponseBandAndCategory = new ReponseBandAndCategory(reponseBrands, reponseCategories);
+        ReponseVoo<ReponseBandAndCategory> reponseVoo = new ReponseVoo<>(reponseBandAndCategory);
+
+        return reponseVoo;
     }
 }

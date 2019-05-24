@@ -8,4 +8,6 @@ public interface GoodsService {
     ReponseVoo getProductList(RequestListParams requestListParams,String goodsSn,String name);
 
     ReponseVoo deleteProductById(MallGoods mallGoods);
+
+    ReponseVoo getReponseBandAndCategory();
 }

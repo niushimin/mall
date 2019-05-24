@@ -1,5 +1,6 @@
 package com.mall4j.springboot.mapper;
 
+import com.mall4j.springboot.actionform.product.ReponseCategory;
 import com.mall4j.springboot.pojo.MallCategory;
 import com.mall4j.springboot.pojo.MallCategoryExample;
 import org.apache.ibatis.annotations.Param;
@@ -28,4 +29,6 @@ public interface MallCategoryMapper {
     int updateByPrimaryKeySelective(MallCategory record);
 
     int updateByPrimaryKey(MallCategory record);
+
+    List<ReponseCategory> selectCategory();
 }

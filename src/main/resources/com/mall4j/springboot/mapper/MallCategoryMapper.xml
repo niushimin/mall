@@ -15,6 +15,23 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+  <!--分隔符-杨盼-->
+  <resultMap id="selectCategoryMapper" type="com.mall4j.springboot.actionform.product.ReponseCategory">
+    <result column="id1" property="value"/>
+    <result column="name1" property="label"/>
+    <collection property="children" ofType="com.mall4j.springboot.actionform.product.ReponseBrand">
+      <result column="id2" property="value"/>
+      <result column="name2" property="label"/>
+    </collection>
+  </resultMap>
+  <select id="selectCategory" resultMap="selectCategoryMapper">
+    SELECT m1.id as id1,m1.`name` as name1,m2.id as id2,m2.`name` as name2
+    from mall_category m1
+    LEFT JOIN mall_category m2
+    ON m1.id=m2.pid
+	where m1.`level`='L1'
+  </select>
+  <!--分隔符-杨盼-->
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

@@ -32,8 +32,8 @@ public class GoodsController {
     /*新增商品 回显种类数据*/
     @RequestMapping("/catAndBrand")
     public ReponseVoo insertCatAndBrand(){
-
-        return null;
+        ReponseVoo reponseVoo = goodsService.getReponseBandAndCategory();
+        return reponseVoo;
     }
     /*新增商品*/
     @RequestMapping("/create")

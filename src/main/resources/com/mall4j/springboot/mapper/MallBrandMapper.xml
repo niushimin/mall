@@ -12,6 +12,16 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
+  <!--分隔符-->
+  <resultMap id="selectBandMapper" type="com.mall4j.springboot.actionform.product.ReponseBrand">
+    <result property="label" column="name"/>
+    <result property="value" column="id"/>
+  </resultMap>
+  <select id="selectBand" resultMap="selectBandMapper">
+    select id,`name`
+    from mall_brand
+  </select>
+  <!--分隔符-->
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

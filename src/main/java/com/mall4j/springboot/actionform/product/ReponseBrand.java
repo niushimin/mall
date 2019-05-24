@@ -1,13 +1,13 @@
 package com.mall4j.springboot.actionform.product;
 
-public class ReponseClass {
+public class ReponseBrand {
     String label;
     int value;
 
-    public ReponseClass() {
+    public ReponseBrand() {
     }
 
-    public ReponseClass(String label, int value) {
+    public ReponseBrand(String label, int value) {
         this.label = label;
         this.value = value;
     }

@@ -1,5 +1,6 @@
 package com.mall4j.springboot.mapper;
 
+import com.mall4j.springboot.actionform.product.ReponseBrand;
 import com.mall4j.springboot.pojo.MallBrand;
 import com.mall4j.springboot.pojo.MallBrandExample;
 import org.apache.ibatis.annotations.Param;
@@ -28,4 +29,6 @@ public interface MallBrandMapper {
     int updateByPrimaryKeySelective(MallBrand record);
 
     int updateByPrimaryKey(MallBrand record);
+
+    List<ReponseBrand> selectBand();
 }

@@ -3,30 +3,30 @@ package com.mall4j.springboot.actionform.product;
 import java.util.List;
 
 public class ReponseBandAndCategory {
-    List<ReponseClass> brandList;
-    List<ReponseClass> categoryList;
+    List<ReponseBrand> brandList;
+    List<ReponseCategory> categoryList;
 
     public ReponseBandAndCategory() {
     }
 
-    public ReponseBandAndCategory(List<ReponseClass> brandList, List<ReponseClass> categoryList) {
+    public ReponseBandAndCategory(List<ReponseBrand> brandList, List<ReponseCategory> categoryList) {
         this.brandList = brandList;
         this.categoryList = categoryList;
     }
 
-    public List<ReponseClass> getBrandList() {
+    public List<ReponseBrand> getBrandList() {
         return brandList;
     }
 
-    public void setBrandList(List<ReponseClass> brandList) {
+    public void setBrandList(List<ReponseBrand> brandList) {
         this.brandList = brandList;
     }
 
-    public List<ReponseClass> getCategoryList() {
+    public List<ReponseCategory> getCategoryList() {
         return categoryList;
     }
 
-    public void setCategoryList(List<ReponseClass> categoryList) {
+    public void setCategoryList(List<ReponseCategory> categoryList) {
         this.categoryList = categoryList;
     }
 }
