@@ -42,5 +42,17 @@ public class GoodsController {
         ReponseVoo reponseVoo = goodsService.insertGoods(requestGoods);
         return reponseVoo;
     }
+    /*回显修改商品数据*/
+    @RequestMapping("/detail")
+    public ReponseVoo getProductDetail(int id){
+        ReponseVoo reponseVoo = goodsService.getProductDetail(id);
+        return reponseVoo;
+    }
+    /*更新商品*/
+    @RequestMapping("/update")
+    public ReponseVoo updateProduct(@RequestBody RequestGoods requestGoods){
+        ReponseVoo reponseVoo = goodsService.updateProduct(requestGoods);
+        return reponseVoo;
+    }
 
 }

@@ -6,11 +6,8 @@ import com.github.pagehelper.PageInfo;
 import com.mall4j.springboot.actionform.ReponsePage;
 import com.mall4j.springboot.actionform.ReponseVoo;
 import com.mall4j.springboot.actionform.RequestListParams;
-import com.mall4j.springboot.actionform.product.ReponseBandAndCategory;
-import com.mall4j.springboot.actionform.product.ReponseBrand;
-import com.mall4j.springboot.actionform.product.ReponseCategory;
+import com.mall4j.springboot.actionform.product.*;
 
-import com.mall4j.springboot.actionform.product.RequestGoods;
 import com.mall4j.springboot.mapper.MallGoodsAttributeMapper;
 import com.mall4j.springboot.mapper.MallGoodsMapper;
 import com.mall4j.springboot.mapper.MallGoodsProductMapper;
@@ -19,11 +16,15 @@ import com.mall4j.springboot.mapper.mallbrand.MallBrandMapper;
 import com.mall4j.springboot.mapper.mallcategory.MallCategoryMapper;
 
 import com.mall4j.springboot.pojo.*;
+import com.mall4j.springboot.pojo.common.ResponseVVo;
+import com.mall4j.springboot.pojo.common.ResponseVo;
+import com.mall4j.springboot.pojo.mallcategory.MallCategory;
 import com.mall4j.springboot.service.product.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.Oneway;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,12 +43,16 @@ public class GoodsServiceImpl implements GoodsService {
     MallGoodsProductMapper mallGoodsProductMapper;
     @Autowired
     MallGoodsSpecificationMapper mallGoodsSpecificationMapper;
+    @Autowired
+    MallCategoryMapper mallCategoryMapper;
 
     @Override
     public ReponseVoo getProductList(RequestListParams requestListParams,String goodsSn,String name) {
         MallGoodsExample mallGoodsExample = new MallGoodsExample();
         MallGoodsExample.Criteria criteria = mallGoodsExample.createCriteria();
         criteria.andDeletedEqualTo(false);
+
+
         if(goodsSn != null && goodsSn.length() > 0){
             criteria.andGoodsSnEqualTo(goodsSn);
         }
@@ -131,6 +136,65 @@ public class GoodsServiceImpl implements GoodsService {
             mallGoodsSpecification.setUpdateTime(new Date());
             mallGoodsSpecification.setDeleted(false);
             mallGoodsSpecificationMapper.insertSelective(mallGoodsSpecification);
+        }
+        return reponseVoo;
+    }
+
+    @Override
+    public ReponseVoo getProductDetail(int id) {
+        ResponseGoodsDetail responseGoodsDetail = new ResponseGoodsDetail();
+        /*attributes表*/
+        MallGoodsAttributeExample mallGoodsAttributeExample = new MallGoodsAttributeExample();
+        MallGoodsAttributeExample.Criteria criteria = mallGoodsAttributeExample.createCriteria();
+        criteria.andGoodsIdEqualTo(id);
+        List<MallGoodsAttribute> mallGoodsAttributes = mallGoodsAttributeMapper.selectByExample(mallGoodsAttributeExample);
+        responseGoodsDetail.setAttributes(mallGoodsAttributes);
+        /*goods表*/
+        MallGoods mallGoods = mallGoodsMapper.selectByPrimaryKey(id);
+        responseGoodsDetail.setGoods(mallGoods);
+        /*categoryIds表*/
+        ArrayList<Integer> mallCategories = new ArrayList<>();
+        mallCategories.add(mallGoods.getCategoryId());
+        mallCategories.add(mallGoods.getBrandId());
+        responseGoodsDetail.setCategoryIds(mallCategories);
+        /*product*/
+        MallGoodsProductExample mallGoodsProductExample = new MallGoodsProductExample();
+        MallGoodsProductExample.Criteria criteriaProduct = mallGoodsProductExample.createCriteria();
+        criteriaProduct.andGoodsIdEqualTo(id);
+        List<MallGoodsProduct> mallGoodsProducts = mallGoodsProductMapper.selectByExample(mallGoodsProductExample);
+        responseGoodsDetail.setProducts(mallGoodsProducts);
+        /*specifications*/
+        MallGoodsSpecificationExample mallGoodsSpecificationExample = new MallGoodsSpecificationExample();
+        MallGoodsSpecificationExample.Criteria criteriaSpecifications = mallGoodsSpecificationExample.createCriteria();
+        criteriaSpecifications.andGoodsIdEqualTo(id);
+        List<MallGoodsSpecification> mallGoodsSpecifications = mallGoodsSpecificationMapper.selectByExample(mallGoodsSpecificationExample);
+        responseGoodsDetail.setSpecifications(mallGoodsSpecifications);
+        /*返回参数*/
+        ReponseVoo reponseVoo = new ReponseVoo(responseGoodsDetail);
+        return reponseVoo;
+    }
+
+    @Override
+    public ReponseVoo updateProduct(RequestGoods requestGoods) {
+        ReponseVoo reponseVoo = new ReponseVoo();
+
+        MallGoods mallGoods = requestGoods.getGoods();
+        List<MallGoodsAttribute> mallGoodsAttributes = requestGoods.getAttributes();
+        List<MallGoodsProduct> mallGoodsProducts = requestGoods.getProducts();
+        List<MallGoodsSpecification> mallGoodsSpecifications = requestGoods.getSpecifications();
+        /*修改goods*/
+        mallGoodsMapper.updateByPrimaryKeySelective(mallGoods);
+        /*修改attribute*/
+        for (MallGoodsAttribute mallGoodsAttribute : mallGoodsAttributes) {
+            mallGoodsAttributeMapper.updateByPrimaryKeySelective(mallGoodsAttribute);
+        }
+        /*修改product*/
+        for (MallGoodsProduct mallGoodsProduct : mallGoodsProducts) {
+            mallGoodsProductMapper.updateByPrimaryKeySelective(mallGoodsProduct);
+        }
+        /*修改Specification*/
+        for (MallGoodsSpecification mallGoodsSpecification : mallGoodsSpecifications) {
+            mallGoodsSpecificationMapper.updateByPrimaryKeySelective(mallGoodsSpecification);
         }
         return reponseVoo;
     }

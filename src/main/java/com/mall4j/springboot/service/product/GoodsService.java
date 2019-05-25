@@ -13,4 +13,8 @@ public interface GoodsService {
     ReponseVoo getReponseBandAndCategory();
 
     ReponseVoo insertGoods(RequestGoods requestGoods);
+
+    ReponseVoo getProductDetail(int id);
+
+    ReponseVoo updateProduct(RequestGoods requestGoods);
 }
