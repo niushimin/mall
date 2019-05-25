@@ -2,13 +2,31 @@ server:
   servlet:
     context-path: /admin
   port: 80
-  tomcat:
-    basedir: D:\IDEAWorkSpace\springboot-tomcat-temp
+
 
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.5.20:3306/mall?serverTimezone=GMT&useSSL=false
+    url: jdbc:mysql://192.168.5.20:3306/mall?serverTimezone=GMT%2B8&useSSL=false
     username: root
     password: root
+
+  jackson:
+    date-format: yyyy-MM-dd MM:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+
+  mvc:
+    servlet:
+      load-on-startup: 1
+    static-path-pattern: /wx/storage/fetch/**
+
+  resources:
+    static-locations: classpath:/static/wx/storage/fetch/
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB

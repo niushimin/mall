@@ -3,6 +3,7 @@ package com.mall4j.springboot.mapper.mallcategory;
 
 import com.mall4j.springboot.actionform.product.ReponseCategory;
 
+import com.mall4j.springboot.pojo.mallcategory.LabelVo;
 import com.mall4j.springboot.pojo.mallcategory.MallCategory;
 import com.mall4j.springboot.pojo.mallcategory.MallCategoryExample;
 import com.mall4j.springboot.pojo.mallcategory.MallCategoryPrimary;
@@ -38,7 +39,12 @@ public interface MallCategoryMapper {
     // 自己写的接口
     List<MallCategoryPrimary> queryMallCategoryList();
 
+    List<LabelVo> queryMallCategoryLabelList();
+
+    void createNewMallCategory(MallCategory mallCategory);
+
     int deleteMallCategorySecond(Integer id);
 
     int deleteMallCategoryPrimary(Integer id);
+
 }

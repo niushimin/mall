@@ -1,4 +1,4 @@
-package com.mall4j.springboot.mapper;
+package com.mall4j.springboot.mapper.promotion;
 
 import com.mall4j.springboot.pojo.MallTopic;
 import com.mall4j.springboot.pojo.MallTopicExample;

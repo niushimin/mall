@@ -35,6 +35,7 @@ public class StringArrayToStringHandler extends BaseTypeHandler<String[]> {
         String[] strings = null;
         try {
             strings = objectMapper.readValue(resultSet.getString(s),String[].class);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

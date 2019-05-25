@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mall4j.springboot.mapper.MallAdMapper">
-  <resultMap id="BaseResultMap" type="com.mall4j.springboot.pojo.MallAd">
+<mapper namespace="com.mall4j.springboot.mapper.promotion.MallGrouponMapper">
+  <resultMap id="BaseResultMap" type="com.mall4j.springboot.pojo.MallGroupon">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="link" jdbcType="VARCHAR" property="link" />
-    <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="position" jdbcType="TINYINT" property="position" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
-    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="enabled" jdbcType="BIT" property="enabled" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="groupon_id" jdbcType="INTEGER" property="grouponId" />
+    <result column="rules_id" jdbcType="INTEGER" property="rulesId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="creator_user_id" jdbcType="INTEGER" property="creatorUserId" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="share_url" jdbcType="VARCHAR" property="shareUrl" />
+    <result column="payed" jdbcType="BIT" property="payed" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,16 +73,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, link, url, position, content, start_time, end_time, enabled, add_time, 
-    update_time, deleted
+    id, order_id, groupon_id, rules_id, user_id, creator_user_id, add_time, update_time, 
+    share_url, payed, deleted
   </sql>
-  <select id="selectByExample" parameterType="com.mall4j.springboot.pojo.MallAdExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.mall4j.springboot.pojo.MallGrouponExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from mall_ad
+    from mall_groupon
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,66 +93,61 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from mall_ad
+    from mall_groupon
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from mall_ad
+    delete from mall_groupon
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mall4j.springboot.pojo.MallAdExample">
-    delete from mall_ad
+  <delete id="deleteByExample" parameterType="com.mall4j.springboot.pojo.MallGrouponExample">
+    delete from mall_groupon
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mall4j.springboot.pojo.MallAd">
-    insert into mall_ad (id, name, link, 
-      url, position, content, 
-      start_time, end_time, enabled, 
-      add_time, update_time, deleted
-      )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR}, #{position,jdbcType=TINYINT}, #{content,jdbcType=VARCHAR}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{enabled,jdbcType=BIT}, 
-      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
-      )
+  <insert id="insert" parameterType="com.mall4j.springboot.pojo.MallGroupon">
+    insert into mall_groupon (id, order_id, groupon_id, 
+      rules_id, user_id, creator_user_id, 
+      add_time, update_time, share_url, 
+      payed, deleted)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{grouponId,jdbcType=INTEGER}, 
+      #{rulesId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{creatorUserId,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{shareUrl,jdbcType=VARCHAR}, 
+      #{payed,jdbcType=BIT}, #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.mall4j.springboot.pojo.MallAd">
-    insert into mall_ad
+  <insert id="insertSelective" parameterType="com.mall4j.springboot.pojo.MallGroupon">
+    insert into mall_groupon
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="name != null">
-        name,
+      <if test="orderId != null">
+        order_id,
       </if>
-      <if test="link != null">
-        link,
+      <if test="grouponId != null">
+        groupon_id,
       </if>
-      <if test="url != null">
-        url,
+      <if test="rulesId != null">
+        rules_id,
       </if>
-      <if test="position != null">
-        position,
+      <if test="userId != null">
+        user_id,
       </if>
-      <if test="content != null">
-        content,
-      </if>
-      <if test="startTime != null">
-        start_time,
-      </if>
-      <if test="endTime != null">
-        end_time,
-      </if>
-      <if test="enabled != null">
-        enabled,
+      <if test="creatorUserId != null">
+        creator_user_id,
       </if>
       <if test="addTime != null">
         add_time,
       </if>
       <if test="updateTime != null">
         update_time,
+      </if>
+      <if test="shareUrl != null">
+        share_url,
+      </if>
+      <if test="payed != null">
+        payed,
       </if>
       <if test="deleted != null">
         deleted,
@@ -163,29 +157,20 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
       </if>
-      <if test="link != null">
-        #{link,jdbcType=VARCHAR},
+      <if test="grouponId != null">
+        #{grouponId,jdbcType=INTEGER},
       </if>
-      <if test="url != null">
-        #{url,jdbcType=VARCHAR},
+      <if test="rulesId != null">
+        #{rulesId,jdbcType=INTEGER},
       </if>
-      <if test="position != null">
-        #{position,jdbcType=TINYINT},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="startTime != null">
-        #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null">
-        #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="enabled != null">
-        #{enabled,jdbcType=BIT},
+      <if test="creatorUserId != null">
+        #{creatorUserId,jdbcType=INTEGER},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
@@ -193,52 +178,55 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="shareUrl != null">
+        #{shareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payed != null">
+        #{payed,jdbcType=BIT},
+      </if>
       <if test="deleted != null">
         #{deleted,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mall4j.springboot.pojo.MallAdExample" resultType="java.lang.Long">
-    select count(*) from mall_ad
+  <select id="countByExample" parameterType="com.mall4j.springboot.pojo.MallGrouponExample" resultType="java.lang.Long">
+    select count(*) from mall_groupon
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update mall_ad
+    update mall_groupon
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
       </if>
-      <if test="record.link != null">
-        link = #{record.link,jdbcType=VARCHAR},
+      <if test="record.grouponId != null">
+        groupon_id = #{record.grouponId,jdbcType=INTEGER},
       </if>
-      <if test="record.url != null">
-        url = #{record.url,jdbcType=VARCHAR},
+      <if test="record.rulesId != null">
+        rules_id = #{record.rulesId,jdbcType=INTEGER},
       </if>
-      <if test="record.position != null">
-        position = #{record.position,jdbcType=TINYINT},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
-      </if>
-      <if test="record.startTime != null">
-        start_time = #{record.startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.endTime != null">
-        end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.enabled != null">
-        enabled = #{record.enabled,jdbcType=BIT},
+      <if test="record.creatorUserId != null">
+        creator_user_id = #{record.creatorUserId,jdbcType=INTEGER},
       </if>
       <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shareUrl != null">
+        share_url = #{record.shareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payed != null">
+        payed = #{record.payed,jdbcType=BIT},
       </if>
       <if test="record.deleted != null">
         deleted = #{record.deleted,jdbcType=BIT},
@@ -249,49 +237,39 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update mall_ad
+    update mall_groupon
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      link = #{record.link,jdbcType=VARCHAR},
-      url = #{record.url,jdbcType=VARCHAR},
-      position = #{record.position,jdbcType=TINYINT},
-      content = #{record.content,jdbcType=VARCHAR},
-      start_time = #{record.startTime,jdbcType=TIMESTAMP},
-      end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      enabled = #{record.enabled,jdbcType=BIT},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      groupon_id = #{record.grouponId,jdbcType=INTEGER},
+      rules_id = #{record.rulesId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      creator_user_id = #{record.creatorUserId,jdbcType=INTEGER},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      share_url = #{record.shareUrl,jdbcType=VARCHAR},
+      payed = #{record.payed,jdbcType=BIT},
       deleted = #{record.deleted,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mall4j.springboot.pojo.MallAd">
-    update mall_ad
+  <update id="updateByPrimaryKeySelective" parameterType="com.mall4j.springboot.pojo.MallGroupon">
+    update mall_groupon
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
       </if>
-      <if test="link != null">
-        link = #{link,jdbcType=VARCHAR},
+      <if test="grouponId != null">
+        groupon_id = #{grouponId,jdbcType=INTEGER},
       </if>
-      <if test="url != null">
-        url = #{url,jdbcType=VARCHAR},
+      <if test="rulesId != null">
+        rules_id = #{rulesId,jdbcType=INTEGER},
       </if>
-      <if test="position != null">
-        position = #{position,jdbcType=TINYINT},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="startTime != null">
-        start_time = #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null">
-        end_time = #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="enabled != null">
-        enabled = #{enabled,jdbcType=BIT},
+      <if test="creatorUserId != null">
+        creator_user_id = #{creatorUserId,jdbcType=INTEGER},
       </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -299,24 +277,29 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="shareUrl != null">
+        share_url = #{shareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payed != null">
+        payed = #{payed,jdbcType=BIT},
+      </if>
       <if test="deleted != null">
         deleted = #{deleted,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mall4j.springboot.pojo.MallAd">
-    update mall_ad
-    set name = #{name,jdbcType=VARCHAR},
-      link = #{link,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      position = #{position,jdbcType=TINYINT},
-      content = #{content,jdbcType=VARCHAR},
-      start_time = #{startTime,jdbcType=TIMESTAMP},
-      end_time = #{endTime,jdbcType=TIMESTAMP},
-      enabled = #{enabled,jdbcType=BIT},
+  <update id="updateByPrimaryKey" parameterType="com.mall4j.springboot.pojo.MallGroupon">
+    update mall_groupon
+    set order_id = #{orderId,jdbcType=INTEGER},
+      groupon_id = #{grouponId,jdbcType=INTEGER},
+      rules_id = #{rulesId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      creator_user_id = #{creatorUserId,jdbcType=INTEGER},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
+      share_url = #{shareUrl,jdbcType=VARCHAR},
+      payed = #{payed,jdbcType=BIT},
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>

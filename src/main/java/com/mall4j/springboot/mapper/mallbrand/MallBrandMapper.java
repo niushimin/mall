@@ -5,6 +5,7 @@ import com.mall4j.springboot.actionform.product.ReponseBrand;
 import com.mall4j.springboot.pojo.mallbrand.BrandPageVo;
 import com.mall4j.springboot.pojo.mallbrand.MallBrand;
 import com.mall4j.springboot.pojo.mallbrand.MallBrandExample;
+import com.mall4j.springboot.pojo.mallbrand.MallBrandVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -39,4 +40,8 @@ public interface MallBrandMapper {
     List<MallBrand> queryMallBrandPageList(BrandPageVo requestPageVo);
 
     int queryMallBrandPageTotal(BrandPageVo requestPageVo);
+
+    void createNewMallBrand(MallBrand mallBrand);
+
+    MallBrandVo selectMallBrandVoById(Integer id);
 }

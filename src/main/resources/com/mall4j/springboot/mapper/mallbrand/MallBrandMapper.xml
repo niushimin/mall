@@ -244,10 +244,10 @@
     update mall_brand
     <set>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="desc != null">
-        desc = #{desc,jdbcType=VARCHAR},
+        `desc` = #{desc,jdbcType=VARCHAR},
       </if>
       <if test="picUrl != null">
         pic_url = #{picUrl,jdbcType=VARCHAR},
@@ -272,8 +272,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.mall4j.springboot.pojo.mallbrand.MallBrand">
     update mall_brand
-    set name = #{name,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
+    set `name` = #{name,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR},
       pic_url = #{picUrl,jdbcType=VARCHAR},
       sort_order = #{sortOrder,jdbcType=TINYINT},
       floor_price = #{floorPrice,jdbcType=DECIMAL},
@@ -298,5 +298,29 @@
       </if>
     </where>
     ORDER BY ${sort} ${order}
+  </select>
+
+  <insert id="createNewMallBrand">
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+      INSERT INTO mall_brand(`name`, `desc`, pic_url, sort_order, floor_price, add_time, update_time, deleted)
+      VALUES (#{name}, #{desc}, #{picUrl}, #{sortOrder}, #{floorPrice}, #{addTime}, #{updateTime}, #{deleted})
+  </insert>
+
+  <resultMap id="BrandVoMap" type="com.mall4j.springboot.pojo.mallbrand.MallBrandVo">
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="desc" property="desc" />
+    <result column="pic_url" property="picUrl" />
+    <result column="floor_price" property="floorPrice" />
+    <result column="add_time" property="addTime" />
+    <result column="update_time" property="updateTime" />
+  </resultMap>
+
+  <select id="selectMallBrandVoById" resultMap="BrandVoMap">
+    SELECT id, `name`, `desc`, pic_url, floor_price, add_time, update_time
+    FROM mall_brand
+    WHERE id = #{id}
   </select>
 </mapper>

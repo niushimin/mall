@@ -6,14 +6,18 @@ import com.mall4j.springboot.pojo.MallStorage;
 import com.mall4j.springboot.service.sotrage.StorageService;
 import com.mall4j.springboot.utils.UUIDUitls;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Date;
 import java.util.UUID;
 
@@ -46,11 +50,18 @@ public class StorageServiceImpl implements StorageService {
         mallStorageMapper.insertSelective(mallStorage);
         /*文件写入*/
         try {
-            File file = new File("target\\classes\\static\\wx\\storage\\fetch");
+            File file = new File(ResourceUtils.getURL("classpath:").getPath());
             if (!file.exists()) {
-                file.mkdirs();
+                file = new File("");
             }
-            File fileOut = new File(file, key);
+            File newFile = new File(file.getAbsolutePath(), "static/wx/storage/fetch/");
+            if (!newFile.exists()) {
+                newFile.mkdirs();
+            }
+            if (!newFile.exists()) {
+                newFile.mkdirs();
+            }
+            File fileOut = new File(newFile, key);
             InputStream inputStream = multipartFile.getInputStream();
             FileOutputStream fileOutputStream = new FileOutputStream(fileOut);
             byte[] bytes = new byte[1024];

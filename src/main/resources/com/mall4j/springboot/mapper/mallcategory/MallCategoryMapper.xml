@@ -91,7 +91,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, keywords, desc, pid, icon_url, pic_url, level, sort_order, add_time, update_time, 
+    id, name, keywords, `desc`, pid, icon_url, pic_url, level, sort_order, add_time, update_time,
     deleted
   </sql>
   <select id="selectByExample" parameterType="com.mall4j.springboot.pojo.mallcategory.MallCategoryExample" resultMap="BaseResultMap">
@@ -287,13 +287,13 @@
     update mall_category
     <set>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="keywords != null">
         keywords = #{keywords,jdbcType=VARCHAR},
       </if>
       <if test="desc != null">
-        desc = #{desc,jdbcType=VARCHAR},
+        `desc` = #{desc,jdbcType=VARCHAR},
       </if>
       <if test="pid != null">
         pid = #{pid,jdbcType=INTEGER},
@@ -305,7 +305,7 @@
         pic_url = #{picUrl,jdbcType=VARCHAR},
       </if>
       <if test="level != null">
-        level = #{level,jdbcType=VARCHAR},
+        `level` = #{level,jdbcType=VARCHAR},
       </if>
       <if test="sortOrder != null">
         sort_order = #{sortOrder,jdbcType=TINYINT},
@@ -368,6 +368,25 @@
     WHERE pri.pid = 0
   </select>
 
+  <resultMap id="LabelVoMap" type="com.mall4j.springboot.pojo.mallcategory.LabelVo">
+    <id column="id" property="value" />
+    <result column="name" property="label" />
+  </resultMap>
+
+  <select id="queryMallCategoryLabelList" resultMap="LabelVoMap">
+    SELECT id, `name`
+    FROM mall_category
+    WHERE pid = 0
+  </select>
+
+  <insert id="createNewMallCategory">
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO mall_category(`name`, keywords, `desc`, pid, icon_url, pic_url, `level`, sort_order, add_time, update_time, deleted)
+    VALUES (#{name}, #{keywords}, #{desc}, #{pid}, #{iconUrl}, #{picUrl}, #{level}, #{sortOrder}, #{addTime}, #{updateTime}, #{deleted})
+  </insert>
+
   <delete id="deleteMallCategorySecond">
     DELETE
     FROM mall_category
@@ -379,4 +398,5 @@
     FROM mall_category
     WHERE id = #{id}
   </delete>
+
 </mapper>
