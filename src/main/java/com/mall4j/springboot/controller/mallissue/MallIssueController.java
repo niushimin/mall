@@ -23,7 +23,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/issue")
+@RequestMapping("/admin/issue")
 public class MallIssueController {
 
     @Autowired

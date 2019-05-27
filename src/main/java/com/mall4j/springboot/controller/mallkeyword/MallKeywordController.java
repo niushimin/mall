@@ -20,7 +20,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/keyword")
+@RequestMapping("/admin/keyword")
 public class MallKeywordController {
 
     @Autowired

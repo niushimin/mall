@@ -21,7 +21,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/admin/auth")
 public class MallAdminController {
 
     @Autowired

@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/admin/category")
 public class MallCategoryController {
 
     @Autowired

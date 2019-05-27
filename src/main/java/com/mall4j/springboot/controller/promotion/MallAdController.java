@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/ad")
+@RequestMapping("/admin/ad")
 public class MallAdController {
 
     @Autowired

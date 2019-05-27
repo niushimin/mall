@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @RestController
-@RequestMapping("/storage")
+@RequestMapping("/admin/storage")
 public class StorageController {
     @Autowired
     StorageService storageService;

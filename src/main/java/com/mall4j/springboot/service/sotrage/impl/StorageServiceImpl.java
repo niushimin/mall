@@ -23,6 +23,7 @@ import java.util.UUID;
 
 @Service
 public class StorageServiceImpl implements StorageService {
+
     @Autowired
     MallStorageMapper mallStorageMapper;
 
@@ -55,9 +56,6 @@ public class StorageServiceImpl implements StorageService {
                 file = new File("");
             }
             File newFile = new File(file.getAbsolutePath(), "static/wx/storage/fetch/");
-            if (!newFile.exists()) {
-                newFile.mkdirs();
-            }
             if (!newFile.exists()) {
                 newFile.mkdirs();
             }

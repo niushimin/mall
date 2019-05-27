@@ -18,7 +18,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/admin/order")
 public class MallOrderController {
 
     @Autowired

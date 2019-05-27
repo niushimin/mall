@@ -3,9 +3,11 @@ package com.mall4j.springboot.mapper.malladmin;
 import com.mall4j.springboot.pojo.MallAdmin;
 import com.mall4j.springboot.pojo.MallAdminExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface MallAdminMapper {
     long countByExample(MallAdminExample example);
 

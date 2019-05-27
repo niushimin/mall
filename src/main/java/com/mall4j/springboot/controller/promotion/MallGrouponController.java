@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/groupon")
+@RequestMapping("/admin/groupon")
 public class MallGrouponController {
 
     @Autowired

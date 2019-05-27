@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/topic")
+@RequestMapping("/admin/topic")
 public class MallTopicController {
 
     @Autowired

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/goods")
+@RequestMapping("/admin/goods")
 public class GoodsController {
     @Autowired
     GoodsService goodsService;

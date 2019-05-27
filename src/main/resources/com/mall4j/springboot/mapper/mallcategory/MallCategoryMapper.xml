@@ -364,7 +364,7 @@
            pri.icon_url primary_icon_url, pri.pic_url primary_pic_url, pri.level primary_level,
            sec.id second_id, sec.name second_name, sec.keywords second_keywords, sec.desc second_desc,
            sec.icon_url second_icon_url, sec.pic_url second_pic_url, sec.level second_level
-    FROM mall_category pri LEFT JOIN mall_category sec on pri.id = sec.pid
+    FROM mall_category pri LEFT JOIN mall_category sec ON pri.id = sec.pid
     WHERE pri.pid = 0
   </select>
 

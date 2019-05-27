@@ -20,7 +20,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/brand")
+@RequestMapping("/admin/brand")
 public class MallBrandController {
 
     @Autowired

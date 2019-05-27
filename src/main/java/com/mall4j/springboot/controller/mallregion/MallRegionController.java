@@ -18,7 +18,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/region")
+@RequestMapping("/admin/region")
 public class MallRegionController {
 
     @Autowired
