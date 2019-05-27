@@ -8,7 +8,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="has_picture" jdbcType="BIT" property="hasPicture" />
-    <result column="pic_urls" jdbcType="VARCHAR" property="picUrls" />
+    <result column="pic_urls" jdbcType="VARCHAR" property="picUrls" typeHandler="com.mall4j.springboot.handler.StringArrayToStringHandler"/>
     <result column="star" jdbcType="SMALLINT" property="star" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, value_id, type, content, user_id, has_picture, pic_urls, star, add_time, update_time, 
+    id, value_id, type, content, user_id, has_picture, pic_urls, star, add_time, update_time,
     deleted
   </sql>
   <select id="selectByExample" parameterType="com.mall4j.springboot.pojo.MallCommentExample" resultMap="BaseResultMap">
@@ -91,7 +91,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from mall_comment
     where id = #{id,jdbcType=INTEGER}
@@ -107,13 +107,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mall4j.springboot.pojo.MallComment">
-    insert into mall_comment (id, value_id, type, 
-      content, user_id, has_picture, 
-      pic_urls, star, add_time, 
+    insert into mall_comment (id, value_id, type,
+      content, user_id, has_picture,
+      pic_urls, star, add_time,
       update_time, deleted)
-    values (#{id,jdbcType=INTEGER}, #{valueId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
-      #{content,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{hasPicture,jdbcType=BIT}, 
-      #{picUrls,jdbcType=VARCHAR}, #{star,jdbcType=SMALLINT}, #{addTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{valueId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT},
+      #{content,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{hasPicture,jdbcType=BIT},
+      #{picUrls,jdbcType=VARCHAR,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler}, #{star,jdbcType=SMALLINT}, #{addTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.mall4j.springboot.pojo.MallComment">
@@ -173,7 +173,7 @@
         #{hasPicture,jdbcType=BIT},
       </if>
       <if test="picUrls != null">
-        #{picUrls,jdbcType=VARCHAR},
+        #{picUrls,jdbcType=VARCHAR,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler},
       </if>
       <if test="star != null">
         #{star,jdbcType=SMALLINT},
@@ -217,7 +217,7 @@
         has_picture = #{record.hasPicture,jdbcType=BIT},
       </if>
       <if test="record.picUrls != null">
-        pic_urls = #{record.picUrls,jdbcType=VARCHAR},
+        pic_urls = #{record.picUrls,jdbcType=VARCHAR,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler},
       </if>
       <if test="record.star != null">
         star = #{record.star,jdbcType=SMALLINT},
@@ -239,16 +239,16 @@
   <update id="updateByExample" parameterType="map">
     update mall_comment
     set id = #{record.id,jdbcType=INTEGER},
-      value_id = #{record.valueId,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=TINYINT},
-      content = #{record.content,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      has_picture = #{record.hasPicture,jdbcType=BIT},
-      pic_urls = #{record.picUrls,jdbcType=VARCHAR},
-      star = #{record.star,jdbcType=SMALLINT},
-      add_time = #{record.addTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      deleted = #{record.deleted,jdbcType=BIT}
+    value_id = #{record.valueId,jdbcType=INTEGER},
+    type = #{record.type,jdbcType=TINYINT},
+    content = #{record.content,jdbcType=VARCHAR},
+    user_id = #{record.userId,jdbcType=INTEGER},
+    has_picture = #{record.hasPicture,jdbcType=BIT},
+    pic_urls = #{record.picUrls,jdbcType=VARCHAR,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler},
+    star = #{record.star,jdbcType=SMALLINT},
+    add_time = #{record.addTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    deleted = #{record.deleted,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,7 +272,7 @@
         has_picture = #{hasPicture,jdbcType=BIT},
       </if>
       <if test="picUrls != null">
-        pic_urls = #{picUrls,jdbcType=VARCHAR},
+        pic_urls = #{picUrls,jdbcType=VARCHAR,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler},
       </if>
       <if test="star != null">
         star = #{star,jdbcType=SMALLINT},
@@ -296,7 +296,7 @@
       content = #{content,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
       has_picture = #{hasPicture,jdbcType=BIT},
-      pic_urls = #{picUrls,jdbcType=VARCHAR},
+      pic_urls = #{picUrls,jdbcType=VARCHAR,typeHandler=com.mall4j.springboot.handler.StringArrayToStringHandler},
       star = #{star,jdbcType=SMALLINT},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},

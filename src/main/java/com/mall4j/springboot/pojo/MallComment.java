@@ -15,7 +15,7 @@ public class MallComment {
 
     private Boolean hasPicture;
 
-    private String picUrls;
+    private String[] picUrls;
 
     private Short star;
 
@@ -73,12 +73,12 @@ public class MallComment {
         this.hasPicture = hasPicture;
     }
 
-    public String getPicUrls() {
+    public String[] getPicUrls() {
         return picUrls;
     }
 
-    public void setPicUrls(String picUrls) {
-        this.picUrls = picUrls == null ? null : picUrls.trim();
+    public void setPicUrls(String[] picUrls) {
+        this.picUrls = picUrls;
     }
 
     public Short getStar() {

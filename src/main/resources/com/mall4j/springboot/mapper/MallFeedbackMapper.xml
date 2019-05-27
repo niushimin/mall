@@ -92,7 +92,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from mall_feedback
     where id = #{id,jdbcType=INTEGER}
@@ -115,7 +115,7 @@
       )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{mobile,jdbcType=VARCHAR}, #{feedType,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{hasPicture,jdbcType=BIT}, #{picUrls,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{hasPicture,jdbcType=BIT}, #{picUrls,jdbcType=VARCHAR},
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}
       )
   </insert>
@@ -251,17 +251,17 @@
   <update id="updateByExample" parameterType="map">
     update mall_feedback
     set id = #{record.id,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      username = #{record.username,jdbcType=VARCHAR},
-      mobile = #{record.mobile,jdbcType=VARCHAR},
-      feed_type = #{record.feedType,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      has_picture = #{record.hasPicture,jdbcType=BIT},
-      pic_urls = #{record.picUrls,jdbcType=VARCHAR},
-      add_time = #{record.addTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      deleted = #{record.deleted,jdbcType=BIT}
+    user_id = #{record.userId,jdbcType=INTEGER},
+    username = #{record.username,jdbcType=VARCHAR},
+    mobile = #{record.mobile,jdbcType=VARCHAR},
+    feed_type = #{record.feedType,jdbcType=VARCHAR},
+    content = #{record.content,jdbcType=VARCHAR},
+    status = #{record.status,jdbcType=INTEGER},
+    has_picture = #{record.hasPicture,jdbcType=BIT},
+    pic_urls = #{record.picUrls,jdbcType=VARCHAR},
+    add_time = #{record.addTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    deleted = #{record.deleted,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
